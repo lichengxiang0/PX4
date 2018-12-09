@@ -1,9 +1,10 @@
 # PX4
 飞行控制
 
-飞控的crc检验用的
-CRC16_CCITT_FALSE：多项式x16+x12+x5+1（0x1021），初始值0xFFFF，低位在后，高位在前，结果与0x0000异或
-飞控校验代码：
+## 飞控的crc检验用的  
+	CRC16_CCITT_FALSE：多项式x16+x12+x5+1（0x1021），初始值0xFFFF，低位在后，高位在前，结果与0x0000异或  
+飞控校验代码：  
+```C++
 /**
  * @brief Accumulate the X.25 CRC by adding one char at a time.
  *
@@ -70,12 +71,13 @@ static inline void crc_accumulate_buffer(uint16_t *crcAccum, const char *pBuffer
                 crc_accumulate(*p++, crcAccum);
         }
 }
+```
 
 
-
-电信协议校验
-CRC16_CCITT：多项式x16+x12+x5+1（0x1021），初始值0x0000，低位在前，高位在后，结果与0x0000异或
-这个校验代码：
+## 电信协议校验  
+	CRC16_CCITT：多项式x16+x12+x5+1（0x1021），初始值0x0000，低位在前，高位在后，结果与0x0000异或  
+这个校验代码：  
+```C++
 void InvertUint8(unsigned char *dBuf,unsigned char *srcBuf)
 {
 	int i;
@@ -125,7 +127,7 @@ unsigned short CRC16_CCITT(unsigned char *puchMsg, unsigned int usDataLen)
 	return (wCRCin) ;
  }
 
-
+```
 
 
 
